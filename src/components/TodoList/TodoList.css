@@ -1,0 +1,18 @@
+/* src/components/TodoList/TodoList.css */
+
+.TodoList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.TodoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.TodoItem.completed {
+  text-decoration: line-through;
+}

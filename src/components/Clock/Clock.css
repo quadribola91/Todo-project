@@ -1,0 +1,30 @@
+/* src/components/Clock.css */
+
+.ClockContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; /* Adjust the height as needed */
+  margin-bottom: 50px;
+  background-color: #f0f0f0; /* Background color of the container */
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for the container */
+  position: relative; /* Position relative for absolute positioning */
+  top: 70px; /* Adjust the top spacing to fit below the navbar */
+}
+
+.Clock {
+  font-size: 2rem;
+  color: #ff8c00; /* Unique text color */
+  animation: slideFromRight 5s linear infinite; /* Slide every 5 seconds */
+}
+
+/* Define the animation keyframes */
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%); /* Start from the right */
+  }
+  to {
+    transform: translateX(-100%); /* Move to the left */
+  }
+}

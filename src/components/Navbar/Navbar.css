@@ -1,0 +1,52 @@
+/* src/components/Navbar/Navbar.css */
+
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #46689e;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.Left {
+  display: flex;
+  align-items: center;
+}
+
+.Logo {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.HeaderName {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin-left: 10px;
+}
+
+.Right {
+  display: flex;
+}
+
+.NavItem {
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.Button {
+  padding: 8px 16px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+}

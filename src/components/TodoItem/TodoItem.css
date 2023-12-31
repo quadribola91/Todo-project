@@ -1,0 +1,19 @@
+/* src/components/TodoItem/TodoItem.css */
+
+.TodoItem span {
+  flex-grow: 1;
+}
+
+.TodoItem button {
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.TodoItem button:hover {
+  background-color: #ff1a1a;
+}

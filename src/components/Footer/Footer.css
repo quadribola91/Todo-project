@@ -1,0 +1,112 @@
+/* src/components/Footer/Footer.css */
+
+.Footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  padding-top: 70px;
+}
+
+.Content {
+  text-align: center;
+}
+
+.Logo {
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.Purpose {
+  max-width: 300px;
+  font-size: 15px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgb(70, 46, 46);
+}
+
+.SocialMedia {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.SocialMedia a {
+  margin: 0 10px;
+  font-size: 1.5rem;
+}
+
+.Copyright {
+  margin-top: 50px;
+  font-size: 0.9rem;
+}
+
+/* src/components/Footer/Footer.css */
+
+.Footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Logo {
+  margin-right: 10px;
+}
+
+.Purpose {
+  font-size: 18px;
+  margin-top: 10px;
+  position: relative;
+  animation: slideShow 9s infinite;
+}
+
+@keyframes slideShow {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.SocialMedia {
+  margin-top: 20px;
+}
+
+.SocialMedia a {
+  margin: 0 10px;
+}
+
+.Copyright {
+  margin-top: 20px;
+}
+
+/* Additional styles for responsiveness */
+@media only screen and (max-width: 768px) {
+  .Content {
+    flex-direction: column;
+  }
+  .SocialMedia {
+    margin-top: 10px;
+  }
+}

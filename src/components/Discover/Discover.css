@@ -1,0 +1,22 @@
+/* src/components/Discover/Discover.css */
+.discover-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.artificial-container,
+.natural-container {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .artificial-container,
+  .natural-container {
+    flex: 100%; /* Full width for small screens */
+  }
+}

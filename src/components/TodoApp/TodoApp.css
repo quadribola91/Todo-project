@@ -1,0 +1,65 @@
+/* src/components/TodoApp/TodoApp.css */
+
+.TodoAppContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+}
+
+.TodoApp {
+  /* Your existing TodoApp styling goes here */
+}
+
+.InputContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.InputContainer input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px 0 0 5px;
+}
+
+.InputContainer button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: 1px solid #ddd;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.TodoApp ul {
+  list-style: none;
+  padding: 0;
+}
+
+.TodoApp li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.TodoApp li span {
+  display: flex;
+}
+
+.TodoApp li span button {
+  margin-left: 5px;
+  background-color: #f44336;
+  color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Add more styles as needed */
