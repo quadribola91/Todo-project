@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link for routing
 import "./Navbar.css";
 import pic from "./highC.jpeg";
 import { FaBars, FaTimes } from "react-icons/fa"; // Import both the hamburger (FaBars) and close (FaTimes) icons
@@ -21,19 +22,19 @@ function Navbar() {
       {/* Desktop Menu */}
       <div className={`Right ${isOpen ? "open" : ""}`}>
         <div className="NavItem">
-          <a href="#Discover">Discover</a>
+          <Link to="/discover">Discover</Link>
         </div>
         <div className="NavItem">
-          <a href="#Features">Features</a>
+          <Link to="/features">Features</Link>
         </div>
         <div className="NavItem">
-          <a href="#About">About</a>
+          <Link to="/about">About</Link>
         </div>
         <div className="NavItem">
-          <a href="#Contact">Contact</a>
+          <Link to="/contact">Contact</Link>
         </div>
         <div className="Button">
-          <a href="#TodoApp">TodoApp</a>
+          <Link to="/todoapp">TodoApp</Link>
         </div>
       </div>
 
@@ -50,19 +51,19 @@ function Navbar() {
       {isOpen && (
         <div className="MobileMenu">
           <div className="NavItem">
-            <a href="#Discover">Discover</a>
+            <Link to="/discover">Discover</Link>
           </div>
           <div className="NavItem">
-            <a href="#Features">Features</a>
+            <Link to="/features">Features</Link>
           </div>
           <div className="NavItem">
-            <a href="#About">About</a>
+            <Link to="/about">About</Link>
           </div>
           <div className="NavItem">
-            <a href="#Contact">Contact</a>
+            <Link to="/contact">Contact</Link>
           </div>
           <div className="Button">
-            <a href="#TodoApp">TodoApp</a>
+            <Link to="/todoapp">TodoApp</Link>
           </div>
         </div>
       )}

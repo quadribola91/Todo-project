@@ -1,28 +1,13 @@
-import React from "react";
-import { Redirect, Route } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from './firebase';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-// PrivateRoute Component that checks if the user is authenticated
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [user, loading] = useAuthState(auth);  // Get current authentication state
+const PrivateRoute = ({ element }) => {
+  const { user } = useAuth(); // Access the user from context
 
-  if (loading) {
-    return <div>Loading...</div>; // You can show a loader while the auth state is being determined
-  }
-
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        user ? ( // If the user is logged in, render the component
-          <Component {...props} />
-        ) : ( // If not logged in, redirect to the login page
-          <Redirect to="/login" />
-        )
-      }
-    />
-  );
+  // If the user is authenticated, render the passed element (the component)
+  // Otherwise, redirect to the login page
+  return user ? element : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

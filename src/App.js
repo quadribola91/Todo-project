@@ -1,88 +1,59 @@
-// src/App.jsx
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar/Navbar';
-import TodoList from './components/TodoList/TodoList'; // Displays list of todos
-import FolderList from './components/FolderList'; // Displays list of folders
-import AddTodoModal from './components/AddTodoModal'; // Modal for adding new todos
-import Clock from './components/Clock/Clock';
-import Discover from './components/Discover/Discover';
-import Footer from './components/Footer/Footer'; // Footer
-import { db, auth } from './components/firebase'; // Firebase Firestore
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+// App.js
+import React, { useState, useEffect } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import TodoList from "./components/TodoList/TodoList";
+import AddTodoModal from "./components/AddTodoModal";
+import Clock from "./components/Clock/Clock";
+import Discover from "./components/Discover/Discover";
+import Auth from "./components/Auth"; // Import the Auth component
+import Footer from "./components/Footer/Footer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { auth } from "./components/firebase"; 
+import { AuthProvider, useAuth } from "./context/AuthContext"; // Import AuthProvider
 
 const App = () => {
-  const [todos, setTodos] = useState([]); // State to manage todos
-  const [folders, setFolders] = useState([]); // State to manage folders
-  const [isModalOpen, setModalOpen] = useState(false); // State to control modal visibility
-  const [loading, setLoading] = useState(true); // Loading state
+  const { user } = useAuth();
+  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [authLoading, setAuthLoading] = useState(true);
 
-  const userId = auth.currentUser?.uid; // Get the authenticated user's ID
-
-  // Fetch tasks from Firestore
   const fetchTasks = async () => {
-    if (userId) {
-      setLoading(true);
-      try {
-        const querySnapshot = await getDocs(collection(db, 'tasks', userId, 'taskList'));
-        const tasksData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setTodos(tasksData);
-      } catch (error) {
-        console.error("Error fetching tasks: ", error);
-      } finally {
-        setLoading(false);
-      }
-    }
+    // Fetch tasks logic...
   };
 
-  // Handle adding a new todo
-  const handleAddTodo = async (newTodo, dueDate, priority, notes) => {
-    if (userId) {
-      try {
-        await addDoc(collection(db, 'tasks', userId, 'taskList'), {
-          title: newTodo,
-          dueDate,
-          completed: false,
-          priority,
-          notes,
-        });
-        fetchTasks(); // Refresh task list after adding a new task
-      } catch (error) {
-        console.error("Error adding task: ", error);
-      }
-    }
-  };
-
-  // Fetch tasks when the component mounts
   useEffect(() => {
-    if (userId) {
-      fetchTasks();
-    }
-  }, [userId]);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        fetchTasks();
+      }
+      setAuthLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (authLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      <Navbar /> {/* Displaying the navigation bar */}
-      <Clock />
+    <AuthProvider>
+      <Router>
+        <div>
+          <Navbar />
+          <Clock />
+          <Routes>
+            <Route path="/login" element={<Auth />} />
+            <Route path="/signup" element={<Auth />} />
+            <Route path="/todoapp" element={user ? <TodoList todos={todos} loading={loading} /> : <Auth />} />
+            <Route path="/discover" element={<Discover />} />
+          </Routes>
 
-      {/* Todo List Component */}
-      <TodoList todos={todos} loading={loading} fetchTasks={fetchTasks} handleAddTodo={handleAddTodo} />
-      
-      {/* Folder List Component */}
-      <FolderList folders={folders} />
-
-      {/* Modal for adding new todos */}
-      <AddTodoModal 
-        isOpen={isModalOpen} 
-        onClose={() => setModalOpen(false)} 
-        onAdd={handleAddTodo} 
-      />
-
-      <Discover />
-      <Footer /> {/* Displaying the footer */}
-    </div>
+          <AddTodoModal isOpen={false} onClose={() => {}} onAdd={() => {}} />
+          <Footer />
+        </div>
+      </Router>
+    </AuthProvider>
   );
 };
 
