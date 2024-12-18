@@ -3,6 +3,7 @@
 .TodoList {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .TodoItem {
@@ -11,8 +12,73 @@
   align-items: center;
   border-bottom: 1px solid #ddd;
   padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.TodoItem:hover {
+  background-color: #f7f7f7; /* Light background on hover */
+}
+
+.TodoItem button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.TodoItem button:hover {
+  color: #0056b3; /* Change color on hover */
 }
 
 .TodoItem.completed {
   text-decoration: line-through;
+  color: #888; /* Grey out text when completed */
 }
+
+.TodoItem .task-title {
+  flex-grow: 1; /* Allows task title to take remaining space */
+  font-size: 16px;
+}
+
+.TodoItem .due-date {
+  color: #888; /* Subtle color for due date */
+  font-size: 14px;
+}
+
+.TodoItem.completed .task-title {
+  color: #888; /* Grey out task title when completed */
+}
+
+@media (max-width: 600px) {
+  .TodoItem {
+    flex-direction: column; /* Stack elements on smaller screens */
+    align-items: flex-start;
+  }
+
+  .TodoItem .due-date {
+    margin-top: 5px; /* Space out due date on smaller screens */
+  }
+}
+/* src/components/TodoList/TodoList.css */
+.TodoList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.TodoList li {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.TodoList li button {
+  margin: 5px;
+}
+
+input, textarea, select {
+  margin: 5px;
+}
+

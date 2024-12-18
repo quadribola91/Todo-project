@@ -1,16 +1,11 @@
-/* src/components/Navbar/Navbar.css */
-
 .Navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #46689e;
+  padding: 15px;
+  background-color: #007bff; /* Sky Blue */
   color: white;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  margin-bottom: 50px;
+  position: relative;
 }
 
 .Left {
@@ -18,35 +13,96 @@
   align-items: center;
 }
 
-.Logo {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
 .HeaderName {
-  font-size: 1.5rem;
-  font-weight: bolder;
+  font-size: 24px;
+  font-weight: bold;
   margin-left: 10px;
 }
 
 .Right {
   display: flex;
+  align-items: center;
 }
 
 .NavItem {
-  margin-left: 20px;
-  cursor: pointer;
-  text-decoration: none;
+  margin: 0 15px;
+}
+
+.NavItem a {
   color: white;
-  font-size: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.NavItem a:hover {
+  background-color: #0056b3;
 }
 
 .Button {
-  padding: 8px 16px;
-  background-color: #61dafb;
-  border: none;
-  border-radius: 4px;
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
-  margin-left: 20px;
-  margin-right: 20px;
+}
+
+.MobileMenuIcon {
+  display: none; /* Hide by default */
+  cursor: pointer;
+  z-index: 1000; /* Ensure it is above other content */
+}
+
+.MobileMenu {
+  display: none;
+  flex-direction: column;
+  background-color: #007bff;
+  padding: 10px;
+  width: 100%;
+  position: absolute; /* Position menu absolute to overlay on top of other content */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  height: 100vh; /* Full screen height */
+}
+
+.MobileMenu.open {
+  display: flex; /* Show mobile menu when open */
+}
+
+.MobileMenu .NavItem {
+  margin-bottom: 10px;
+}
+
+.MobileMenu .NavItem a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  /* For medium screens and smaller, hide the right section and show the hamburger icon */
+  .Right {
+    display: none;
+  }
+
+  .MobileMenuIcon {
+    display: block; /* Show hamburger icon */
+  }
+
+  .MobileMenu.open {
+    display: flex; /* Show mobile menu when open */
+  }
+}
+
+@media (min-width: 1025px) {
+  /* For large screens, always show the menu */
+  .Right {
+    display: flex;
+  }
+
+  .MobileMenuIcon {
+    display: none; /* Hide hamburger icon */
+  }
 }

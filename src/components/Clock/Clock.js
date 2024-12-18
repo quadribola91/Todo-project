@@ -31,7 +31,7 @@ function Clock() {
   ).format(currentDateTime);
 
   return (
-    <div className="ClockContainer">
+    <div className="ClockContainerm mb-24">
       <div className="Clock">{formattedDateTime}</div>
     </div>
   );

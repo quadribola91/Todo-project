@@ -1,24 +1,42 @@
 // src/components/TodoItem/TodoItem.js
-import React from "react";
-import "./TodoItem.css";
+import React, { useState } from "react";
+import AddTodoForm from "../TodoList/AddTodoForm";
 
 function TodoItem({ task, onDelete, onToggle }) {
-  const handleDelete = () => {
-    onDelete(task.id);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEdit = () => {
+    setIsEditing(true);
   };
 
-  const handleToggle = () => {
-    onToggle(task.id);
+  const handleSave = (updatedTask) => {
+    setIsEditing(false);
+    // Update task in TodoList
+    onToggle(task.id); // Reapply the same task changes (could be more advanced in a real app)
   };
 
   return (
-    <li className={`TodoItem ${task.completed ? "completed" : ""}`}>
-      <span>{task.title}</span>
-      <span>{task.dueDate ? `Due: ${task.dueDate}` : ""}</span>
-      <button onClick={handleToggle}>
-        {task.completed ? "Undo" : "Complete"}
-      </button>
-      <button onClick={handleDelete}>Delete</button>
+    <li>
+      {isEditing ? (
+        <AddTodoForm
+          taskToEdit={task}
+          editTask={handleSave}
+        />
+      ) : (
+        <>
+          <div style={{ textDecoration: task.completed ? "line-through" : "none" }}>
+            <p>{task.title}</p>
+            <p>{task.dueDate}</p>
+            <p>{task.priority}</p>
+            <p>{task.notes}</p>
+          </div>
+          <button onClick={() => onToggle(task.id)}>
+            {task.completed ? "Mark as Pending" : "Mark as Completed"}
+          </button>
+          <button onClick={handleEdit}>Edit</button>
+          <button onClick={() => onDelete(task.id)}>Delete</button>
+        </>
+      )}
     </li>
   );
 }
