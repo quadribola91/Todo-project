@@ -11,7 +11,8 @@ import Footer from "./components/Footer/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { auth } from "./components/firebase"; 
 import { AuthProvider, useAuth } from "./context/AuthContext"; // Import AuthProvider
-import Landing from "./components/Landing /Landing";
+import Landing from "./components/Landing /Landing"; // Fix the space in the import path
+import AddTodoForm from "./components/TodoList/AddTodoForm";
 
 const App = () => {
   const { user } = useAuth();
@@ -44,29 +45,40 @@ const App = () => {
         <div>
           <Navbar />
           <Clock />
-          <Landing />
           <Routes>
-            <Route path="/login" element={<Auth />} />
-            <Route path="/signup" element={<Auth />} />
-
-            {/* Modify the todoapp route to display Auth component only, along with Navbar and Footer */}
+            {/* Home Route: Landing page is part of the home page */}
             <Route
-              path="/todoapp"
+              path="/"
               element={
-                <div className="todoapp-layout">
-                  <div className="todoapp-content">
-                    {/* Only the Auth page will be shown as content */}
-                    <Auth />
-                  </div>
+                <div>
+                  <Landing /> {/* Landing is now part of the homepage */}
+                  <Footer />
                 </div>
               }
             />
 
+            {/* TodoApp Route: Only renders the Auth component with Navbar and Footer */}
+            <Route
+              path="/todoapp"
+              element={
+                <div>
+                  <div className="todoapp-layout">
+                    {/* Auth page as content on /todoapp route */}
+                    <Auth />
+                  </div>
+                  <Footer />
+                </div>
+              }
+            />
+
+            {/* Other Routes */}
+            <Route path="/login" element={<Auth />} />
+            <Route path="/signup" element={<Auth />} />
             <Route path="/discover" element={<Discover />} />
           </Routes>
 
+          {/* Optional AddTodoModal - can be conditionally rendered based on state */}
           <AddTodoModal isOpen={false} onClose={() => {}} onAdd={() => {}} />
-          <Footer />
         </div>
       </Router>
     </AuthProvider>

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, googleProvider, signInWithPopup, signOut } from "./firebase";
 import { FaGoogle } from 'react-icons/fa'; // Import Google icon
+import ErrorBoundary from "../ErrorBoundary";
+import AddTodoForm from "./TodoList/AddTodoForm";
+import TodoList from './TodoList'; // Import your TodoList component
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -9,11 +12,19 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [user, setUser] = useState(null); // Track the user
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login state
   const navigate = useNavigate();
 
   useEffect(() => {
     // Check if there's a currently logged-in user
-    const unsubscribe = auth.onAuthStateChanged(setUser);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+      if (user) {
+        setIsAuthenticated(true); // Set authenticated when user logs in
+      } else {
+        setIsAuthenticated(false); // Set authenticated to false when user logs out
+      }
+    });
     return () => unsubscribe(); // Cleanup the listener when component unmounts
   }, []);
 
@@ -50,6 +61,7 @@ const Auth = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth); // Firebase sign-out
+      setIsAuthenticated(false); // Set authenticated state to false after logout
       navigate("/"); // Redirect to homepage after logout
     } catch (error) {
       setError(error.message); // Display error message if logout fails
@@ -137,7 +149,7 @@ const Auth = () => {
             </div>
           </>
         ) : (
-          // User is logged in - Show logout button
+          // User is logged in - Show welcome message and TodoList
           <div className="text-center">
             <h2 className="text-xl font-bold mb-4">Welcome, {user.email}</h2>
             <button
@@ -146,6 +158,13 @@ const Auth = () => {
             >
               Log Out
             </button>
+            <div className="mt-6">
+              {/* Render the TodoList after login */}
+              <AddTodoForm/>
+              <ErrorBoundary>
+        <TodoList />
+      </ErrorBoundary>
+            </div>
           </div>
         )}
       </div>
