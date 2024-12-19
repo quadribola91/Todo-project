@@ -1,0 +1,144 @@
+/* Landing Section */
+#landing {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  /* Overlay */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Content Container */
+  .content {
+    position: relative;
+    z-index: 1;
+    color: rgb(62, 59, 59);
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Heading Style */
+  .heading {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #0a0a0a; /* Red color */
+    margin-bottom: 20px;
+  }
+  
+  /* Description Style - Default */
+  .description {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Specific description styles */
+  .description-0 {
+    font-family: Arial, sans-serif;
+  }
+  
+  .description-1 {
+    font-family: "Courier New", Courier, monospace;
+    font-style: italic;
+  }
+  
+  .description-2 {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+  }
+  
+  .description-3 {
+    font-family: "Georgia", serif;
+    text-transform: uppercase;
+  }
+  
+  /* Buttons Container */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  /* Button Styles */
+  .button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  
+  /* Specific Button Styles */
+  .todo-button {
+    background-color: #0066ff; /* Blue */
+    color: white;
+  }
+  
+  .contact-button {
+    background-color: #f16464; /* Red */
+    color: white;
+  }
+  
+  /* Button Hover Effects */
+  .todo-button:hover,
+  .contact-button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .heading {
+      font-size: 2rem;
+    }
+  
+    .description {
+      font-size: 1rem;
+    }
+  
+    .buttons {
+      flex-direction: column;
+    }
+  
+    .button {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .heading {
+      font-size: 1.5rem;
+    }
+  
+    .description {
+      font-size: 0.9rem;
+    }
+  
+    .button {
+      width: 100%;
+    }
+  }
+  

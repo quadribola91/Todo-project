@@ -5,8 +5,14 @@ import pic from "./highC.jpeg";
 import { FaBars, FaTimes } from "react-icons/fa"; // Import both the hamburger (FaBars) and close (FaTimes) icons
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // State to toggle the menu
-  const toggleMenu = () => setIsOpen(prevState => !prevState); // Toggle the menu on click
+  const [isOpen, setIsOpen] = useState(false); // State to toggle the menu visibility
+
+  const toggleMenu = () => setIsOpen(prevState => !prevState); // Toggle the menu on button click
+
+  // Handle menu close and icon change when a link is clicked
+  const handleLinkClick = () => {
+    setIsOpen(false); // Close the mobile menu when a link is clicked
+  };
 
   return (
     <div className="Navbar">
@@ -20,21 +26,18 @@ function Navbar() {
       </div>
 
       {/* Desktop Menu */}
-      <div className={`Right ${isOpen ? "open" : ""}`}>
+      <div className="Right">
         <div className="NavItem">
-          <Link to="/discover">Discover</Link>
+          <Link to="/discover" onClick={handleLinkClick}>Discover</Link>
         </div>
         <div className="NavItem">
-          <Link to="/features">Features</Link>
+          <Link to="/features" onClick={handleLinkClick}>Features</Link>
         </div>
         <div className="NavItem">
-          <Link to="/about">About</Link>
-        </div>
-        <div className="NavItem">
-          <Link to="/contact">Contact</Link>
+          <Link to="/contact" onClick={handleLinkClick}>Contact</Link>
         </div>
         <div className="Button">
-          <Link to="/todoapp">TodoApp</Link>
+          <Link to="/todoapp" onClick={handleLinkClick}>TodoApp</Link>
         </div>
       </div>
 
@@ -48,25 +51,20 @@ function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="MobileMenu">
-          <div className="NavItem">
-            <Link to="/discover">Discover</Link>
-          </div>
-          <div className="NavItem">
-            <Link to="/features">Features</Link>
-          </div>
-          <div className="NavItem">
-            <Link to="/about">About</Link>
-          </div>
-          <div className="NavItem">
-            <Link to="/contact">Contact</Link>
-          </div>
-          <div className="Button">
-            <Link to="/todoapp">TodoApp</Link>
-          </div>
+      <div className={`MobileMenu ${isOpen ? "open" : ""}`}>
+        <div className="NavItem">
+          <Link to="/discover" onClick={handleLinkClick}>Discover</Link>
         </div>
-      )}
+        <div className="NavItem">
+          <Link to="/features" onClick={handleLinkClick}>Features</Link>
+        </div>
+        <div className="NavItem">
+          <Link to="/contact" onClick={handleLinkClick}>Contact</Link>
+        </div>
+        <div className="Button">
+          <Link to="/todoapp" onClick={handleLinkClick}>TodoApp</Link>
+        </div>
+      </div>
     </div>
   );
 }

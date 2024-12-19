@@ -1,122 +1,16 @@
-/* src/App.css */
 
-body,
-html {
-  height: 100%;
-  margin: 0;
-}
-
-#root {
-  height: 100%;
+.todoapp-layout {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  background-color: #f9f9f9;
 }
 
-.App {
+.todoapp-content {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  background-color: #f5f5f5;
-  transition: background-color 0.3s ease;
-}
-
-/* Add styles for the light and dark themes */
-.light {
-  background-color: #ffffff;
-  color: #030303;
-}
-
-.dark {
-  background-color: #333333;
-  color: #ffffff;
-}
-
-.Navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-.NavbarLeft img {
-  height: 30px; /* Adjust the height as needed */
-  margin-right: 10px;
-}
-
-.NavbarRight {
-  display: flex;
+  justify-content: center;
   align-items: center;
+  background-color: #fff;
+  padding: 20px;
 }
-
-.ThemeToggle {
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: inherit;
-}
-
-.TodoButton {
-  background-color: #28a745;
-  color: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  margin-left: 10px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-/* src/App.css */
-/* ... (existing styles) */
-
-/* Add media query for smaller screens */
-@media only screen and (max-width: 768px) {
-  .NavbarLeft img {
-    height: 20px; /* Adjust the height as needed for smaller screens */
-  }
-
-  .Navbar {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .NavbarRight {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .NavLinks {
-    display: none;
-  }
-
-  .NavToggle {
-    display: block;
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: inherit;
-    margin-left: 10px;
-  }
-
-  .Navbar.open .NavLinks {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 60px; /* Adjust the top position as needed */
-    width: 100%;
-    background-color: #007bff;
-  }
-
-  .Navbar.open .NavLinks a {
-    color: #ffffff;
-    padding: 10px;
-    text-align: center;
-  }
-}
-
-/* Add any additional styles as needed */
-
-/* Add any additional styles as needed */

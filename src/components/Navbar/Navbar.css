@@ -1,10 +1,10 @@
+/* General Styles */
 .Navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background-color: #007bff; /* Sky Blue */
-  color: white;
+  background-color: #333;
+  padding: 10px 20px;
   position: relative;
 }
 
@@ -14,6 +14,7 @@
 }
 
 .HeaderName {
+  color: white;
   font-size: 24px;
   font-weight: bold;
   margin-left: 10px;
@@ -24,6 +25,7 @@
   align-items: center;
 }
 
+/* Center the navigation items for large screens */
 .NavItem {
   margin: 0 15px;
 }
@@ -31,78 +33,101 @@
 .NavItem a {
   color: white;
   text-decoration: none;
-  font-size: 16px;
-  padding: 10px;
+  font-size: 18px;
+  padding: 8px 16px;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .NavItem a:hover {
-  background-color: #0056b3;
+  background-color: #f15b5d; /* Highlight color on hover */
 }
 
-.Button {
-  padding: 10px 15px;
-  background-color: #28a745;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.MobileMenuIcon {
-  display: none; /* Hide by default */
-  cursor: pointer;
-  z-index: 1000; /* Ensure it is above other content */
-}
-
-.MobileMenu {
-  display: none;
-  flex-direction: column;
-  background-color: #007bff;
-  padding: 10px;
-  width: 100%;
-  position: absolute; /* Position menu absolute to overlay on top of other content */
-  top: 0; /* Align to the top */
-  left: 0; /* Align to the left */
-  height: 100vh; /* Full screen height */
-}
-
-.MobileMenu.open {
-  display: flex; /* Show mobile menu when open */
-}
-
-.MobileMenu .NavItem {
-  margin-bottom: 10px;
-}
-
-.MobileMenu .NavItem a {
+/* Button styling */
+.Button a {
   color: white;
   text-decoration: none;
   font-size: 18px;
+  background-color: #f15b5d;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-@media (max-width: 1024px) {
-  /* For medium screens and smaller, hide the right section and show the hamburger icon */
+.Button a:hover {
+  background-color: #d14c4e; /* Darker red on hover */
+}
+
+/* Mobile Menu Icon (Hamburger and Close) */
+.MobileMenuIcon {
+  display: none; /* Hidden by default */
+  cursor: pointer;
+  position: fixed; /* Fix the icon to the right side of the screen */
+  top: 20px; /* Position from the top of the screen */
+  right: 20px; /* Position from the right side of the screen */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+/* Mobile Menu */
+.MobileMenu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 60px; /* Position just below the navbar */
+  left: 0;
+  right: 0;
+  background-color: #333;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 999;
+}
+
+.MobileMenu.open {
+  display: flex; /* Display the mobile menu when the open class is added */
+}
+
+.MobileMenu .NavItem {
+  margin: 10px 0;
+}
+
+.MobileMenu .Button {
+  margin-top: 20px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  /* Hide the desktop menu and show the hamburger icon on small screens */
   .Right {
     display: none;
   }
 
   .MobileMenuIcon {
-    display: block; /* Show hamburger icon */
+    display: block; /* Show the hamburger icon */
+    color: white;
+    font-size: 30px;
+  }
+
+  /* Hide mobile menu links and their section initially on small screens */
+  .MobileMenu {
+    display: none; /* Mobile menu is hidden by default */
   }
 
   .MobileMenu.open {
-    display: flex; /* Show mobile menu when open */
+    display: flex; /* Mobile menu will only be shown when the open class is added */
+  }
+
+  /* Ensure the navbar sections are stacked vertically and the hamburger icon is centered */
+  .Navbar {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
-@media (min-width: 1025px) {
-  /* For large screens, always show the menu */
-  .Right {
-    display: flex;
-  }
-
-  .MobileMenuIcon {
-    display: none; /* Hide hamburger icon */
+@media (min-width: 769px) {
+  /* Show desktop menu and hide mobile menu on large screens */
+  .MobileMenu {
+    display: none;
   }
 }
